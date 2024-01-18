@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسبيح</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: 24px;
+            margin: 50px;
+            background-color: #363636; /* لون رصاصي */
+            color: white; /* لون النص */
+        }
+
+        #counter, #phrase {
+            color: white; /* لون النص */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            background-color: white; /* لون الزر */
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        #dua-container {
+            margin-top: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>تسبيح</h1>
+    <p id="counter">0</p>
+    <p id="phrase"></p>
+    <div class="button-container">
+        <button onclick="countZahraTasbeeh()">تسبيح الزهراء</button>
+    </div>
+    <div class="button-container">
+        <button onclick="countClicks()">التسبيح المفتوح</button>
+    </div>
+    <div id="dua-container">
+        <h2>الأدعية</h2>
+        <!-- يمكنك إضافة الأدعية هنا -->
+    </div>
+
+    <script>
+        let tasbeehSequence = [
+            { name: "الله أكبر", count: 34 },
+            { name: "الحمد لله", count: 33 },
+            { name: "سبحان الله", count: 33 }
+        ];
+        let currentIndex = 0;
+        let clickCount = 0;
+
+        function countZahraTasbeeh() {
+            clickCount++;
+
+            if (clickCount <= tasbeehSequence[currentIndex].count) {
+                document.getElementById("counter").textContent = clickCount;
+            } else {
+                currentIndex++;
+                clickCount = 0;
+
+                if (currentIndex >= tasbeehSequence.length) {
+                    currentIndex = 0;
+                }
+
+                document.getElementById("counter").textContent = "0";
+                document.getElementById("phrase").textContent = tasbeehSequence[currentIndex].name;
+            }
+        }
+
+        function countClicks() {
+            // يحسب عدد الضغط على زر التسبيح المفتوح
+            clickCount++;
+            document.getElementById("counter").textContent = clickCount;
+        }
+    </script>
+</body>
+</html>
